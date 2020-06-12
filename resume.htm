@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github Portfolio</title>
+    <link rel="icon" href="icons/favicon-16x16.png">
+    <style>
+        .main
+        {
+            align-content: center;
+            text-align: center;
+        }
+        #profile_image
+        {
+            max-width: 100px;
+            max-height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="/icons/logo-via-logohub.png" alt="logo" width="25%" height="20%">
+    </header>
+    <div class="main">
+        <img id="profile_image" alt="Image">
+        <h2 id="profile_name"></h2>
+        <h5 id="followersInformation"></h5>
+
+    </div>
+    <script>
+        fetch("https://api.github.com/users/singh-sumit")
+        .then(response=>response.json())
+        .then(function(data){
+            document.getElementById('profile_image').src=data['avatar_url']
+            document.getElementById('profile_name').textContent=data['name']
+            let followersCount=data['followers'];
+            let followersInfo='I have been followed by ${followersCount} by asweome people';
+            document.getElementById('followersInformation').textContent=followersInfo
+            
+        })
+    </script>
+</body>
+</html>
